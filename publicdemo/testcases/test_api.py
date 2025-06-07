@@ -2,9 +2,11 @@ import jsonpath
 import requests
 import random
 import json
+import re
 
 class TestApi:
     access_token = ""
+    csrf_token = ""
 
     # 1. get the access token Interface
     def test_get_token(self):
@@ -38,12 +40,39 @@ class TestApi:
         result_str = json.loads(json.dumps(res.json()).replace("\\\\","\\"))
 
     # 4. delete file
-    def test_file_ipload(self):
+    def test_file_upload(self):
         url = "https://api.weixin.qq.com/cgi-bin/media/upload?acpi.access_token" + TestApi.access_token
+        datas = {"media": open("/Users/ethan/Downloads/IMG_2049.jpg", "rb")}
+        res = requests.post(url, json=datas)
+        print(res.json())
 
+    # cookie related interface
+    def test_start(self):
+        url = "http://47.107.116.139/phpwind/"
+        res = requests.get(url)
+        result = res.text
+        print(result)
+        TestApi.csrf_token = re.search('name="csrf_token" value="(.*?)"', result).group(1)
+
+    def test_login(self):
+        url = "http://47.107.116.139/phpwind/index.php?m=u&c=login&a=dorun"
+        datas = {
+            "username": "zhouy218",
+            "password": "136671",
+            "csrf_token": read_yaml("csrf_token"),
+            "back_url": "http://47.107.116.139/phpwind/",
+            "invite": ""
+        }
+        headers = {
+            "Accept": "application/json, text/javascript, /; q=0.01",
+            "X-Requested-With": "XMLHttpRequest"
+        }
+        res = requests.post(url, json=datas, headers=headers)
+        print(res.json())
 
 if __name__ == '__main__':
     test = TestApi()
     test.test_get_token()
     test.test_select_flag()
-    test.test_create_flag()
+    test.test_file_upload()
+    test.test_start()
