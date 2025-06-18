@@ -42,7 +42,8 @@ class TestApi:
     # 4. delete file
     def test_file_upload(self):
         url = "https://api.weixin.qq.com/cgi-bin/media/upload?acpi.access_token" + TestApi.access_token
-        datas = {"media": open("C:\\Users\zhouy\Downloads\IMG_2049.jpg", "rb")}
-        # mac: /Users/ethan/Downloads/IMG_0184.jpg
+        datas = {"media": open("/Users/ethan/Downloads/IMG_2049.jpg", "rb")}
+        # mac: /Users/ethan/Downloads/IMG_2049.jpg
+        # windows: C:\\Users\zhouy\Downloads\IMG_2049.jpg
         res = RequestUtil().all_send_request(method="post",url=url, files=datas)
         print(res.json())
