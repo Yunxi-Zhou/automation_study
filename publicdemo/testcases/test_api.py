@@ -2,12 +2,13 @@ import jsonpath
 import random
 import json
 from publicdemo.commons.request_util import RequestUtil
-
+import pytest
 
 class TestApi:
     access_token = ""
 
     # 1. get the access token Interface
+    @pytest.mark.smoke
     def test_get_token(self):
         url = "https://api.weixin.qq.com/cgi-bin/token"
         datas = {
@@ -23,6 +24,7 @@ class TestApi:
         TestApi.access_token = value[0]
 
     # 2. get tag API Interface
+    @pytest.mark.user_management
     def test_select_flag(self):
         url = "https://api.weixin.qq.com/cgi-bin/tags/get"
         datas = {
