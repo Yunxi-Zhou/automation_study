@@ -1,0 +1,10 @@
+-
+  feature: module
+  story: interface
+  title: get select flag
+  request:
+    method: get
+    url: https://api.weixin.qq.com/cgi-bin/tags/get
+    params:
+      access_token: access_token
+  validate: null

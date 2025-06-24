@@ -1,0 +1,24 @@
+-
+  feature: module
+  story: interface
+  title: get access token interface successfully
+  request:
+    method: get
+    url: https://api.weixin.qq.com/cgi-bin/token
+    params:
+      grant_type: client_credential
+      appid: wx74a8627810cfa308
+      secret: e40a02f9d79a8097df497e6aaf93ab80
+  validate: null
+-
+  feature: module2
+  story: interface2
+  title: get access token interface2 successfully
+  request:
+    method: get
+    url: https://api.weixin.qq.com/cgi-bin/token
+    params:
+      grant_type: client_credential
+      appid: wx74a8627810cfa308
+      secret: e40a02f9d79a8097df497e6aaf93ab80
+  validate: null

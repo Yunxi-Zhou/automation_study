@@ -1,0 +1,12 @@
+-
+  feature: module
+  story: interface
+  title: post file upload
+  request:
+    method: post
+    url: https://api.weixin.qq.com/cgi-bin/media/uploadimg
+    params:
+      access_token: access_token
+    files:
+      media: "/Users/ethan/Downloads/IMG_2049.jpg"
+  validate: null
